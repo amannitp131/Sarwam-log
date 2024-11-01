@@ -1,0 +1,229 @@
+
+
+#dashgraph{
+display: flex;
+flex-direction: row;
+gap: 90px;
+margin-left: 90px;
+
+}
+.orders-container {
+    margin-top: 20px;
+    width: 390px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: linear-gradient(71deg, #080509, #1a171c, #080509);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    box-sizing: border-box;
+    height: 400px;
+    
+  }
+  
+  .summary {
+    margin-bottom: 10px;
+  }
+  
+  .summary h2 {
+    font-size: 1.2rem;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .tabs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .tab-button {
+    flex: 1;
+    padding: 5px;
+    background-color: #606283;
+    border: none;
+    
+    cursor: pointer;
+    text-align: center;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .tab-button.active {
+    background: linear-gradient(to right, #8BC6EC, #9599E2);
+    color: white;
+  }
+  
+  .orders-list {
+    max-height: 220px;
+    overflow-y: auto;
+  }
+  
+  .order-item {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    color: #555;
+  }
+  
+  .order-item:last-child {
+    border-bottom: none;
+  }
+  
+  /* delivery performance */
+  .performance-container {
+    margin-top: 20px;
+    width: 390px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: linear-gradient(71deg, #080509, #1a171c, #080509);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    box-sizing: border-box;
+    height: 400px;
+  }
+  
+  .performance-container h2 {
+    font-size: 1.2rem;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  
+  .metrics-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .metric-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .metric-item:last-child {
+    border-bottom: none;
+  }
+  
+  .metric-label {
+    font-size: 0.9rem;
+    color: #888;
+    flex: 2;
+  }
+  
+  .metric-value {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #888;
+    flex: 1;
+    text-align: right;
+  }
+  
+  .metric-description {
+    font-size: 0.8rem;
+    color: #888;
+    flex: 1;
+    text-align: right;
+  }
+  
+  /* shipment */
+  .shipment-statistics-container {
+    margin-top: 20px;
+    width: 390px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: linear-gradient(71deg, #080509, #1a171c, #080509);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    box-sizing: border-box;
+    height: 400px;
+  }
+  
+  .shipment-statistics-container.header {
+    margin-bottom: 15px;
+  }
+  
+  .shipment-statistics-container.header h2 {
+    font-size: 1.2rem;
+    color: #fff;
+  }
+  
+  .shipment-statistics-container.header p {
+    font-size: 1rem;
+    color: #fff;
+  }
+  
+  .shipment-statistics-container.graph-container {
+    position: relative;
+    height: 200px;
+  }
+  
+  .shipment-statistics-containersvg {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .shipment-statistics-containerline {
+    stroke: #ccc;
+  }
+  
+  .shipment-statistics-containertext {
+    fill: #fff;
+  }
+  
+  .shipment-statistics-containerpolyline {
+    fill: none;
+    stroke: #007bff;
+    stroke-width: 2;
+  }
+
+  #shiphead{
+    color:white;
+  }
+  
+
+  /* MAKE RESPONSIVE */
+  @media (max-width: 768px) {
+    .orders-container, .performance-container, .shipment-statistics-container {
+      padding: 10px;
+    }
+  
+    .tab-button {
+      padding: 8px 15px;
+      font-size: 0.8rem;
+    }
+  
+    .metric-item {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .metric-description {
+      margin-top: 5px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .summary h2, .performance-container h2, .shipment-statistics-container h2 {
+      font-size: 1rem;
+    }
+  
+    .tab-button {
+      padding: 6px 12px;
+      font-size: 0.7rem;
+    }
+  
+    .orders-list {
+      font-size: 0.9rem;
+    }
+  
+    .metric-item {
+      font-size: 0.9rem;
+      padding: 8px 0;
+    }
+  
+    .tooltip {
+      font-size: 10px;
+      padding: 4px;
+    }
+  }

@@ -1,0 +1,81 @@
+/* About Section Styles */
+.about-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: black;
+
+height: 500px;
+
+  }
+  
+  .about-content {
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+    background-color: black;
+    
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 1s ease-out;
+    width: 100%;
+  }
+  
+  .about-icon {
+    font-size: 4rem; 
+    color: #9599E2; 
+    margin-bottom: 20px;
+    animation: bounce 2s infinite;
+  }
+  
+  .about-title {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: #f5f1f1;
+    animation: fadeIn 1s ease-out;
+  }
+  
+  .about-description {
+    font-size: 1.2rem;
+    color: #666;
+    line-height: 1.6;
+    animation: fadeIn 1s ease-out 0.5s; /* Delay for description */
+  }
+  
+  /* Animation Keyframes */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
+  }
+  

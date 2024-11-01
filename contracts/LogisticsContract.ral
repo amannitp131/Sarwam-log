@@ -1,0 +1,97 @@
+import "std/fungible_token_interface"
+
+contract LogisticsContract(
+    admin: Address,
+    mut users: Map<Hash, User>,
+    mut orders: Map<Hash, Order>
+) {
+
+    struct User {
+        id: Hash,
+        name: String,
+        userType: String
+    }
+
+    struct Order {
+        id: Hash,
+        customer: Hash,
+        itemDetails: String,
+        isDispatched: bool,
+        trackingId: Option<String>
+    }
+
+    event UserRegistered(id: Hash, name: String, userType: String)
+    event OrderPlaced(id: Hash, customer: Hash, itemDetails: String)
+    event OrderDispatched(id: Hash, trackingId: String)
+
+    enum ErrorCodes {
+        UnauthorizedAccess = 1,
+        UserAlreadyExists = 2,
+        InvalidUserType = 3,
+        OnlyCustomersCanOrder = 4,
+        OnlyProvidersCanDispatch = 5,
+        OrderAlreadyDispatched = 6,
+        OrderNotFound = 7
+    }
+
+    pub fn registerUser(name: String, userType: String) -> bool {
+        assert!(userType == "Customer" || userType == "Provider", ErrorCodes.InvalidUserType)
+        let user_id = callerAddress!()
+        assert!(!users.contains_key(user_id), ErrorCodes.UserAlreadyExists)
+
+        let user = User {
+            id: user_id,
+            name: name,
+            userType: userType
+        }
+        users.insert(user_id, user)
+
+        emit UserRegistered(user_id, name, userType)
+        return true
+    }
+
+    pub fn placeOrder(itemDetails: String) -> bool {
+        let customer_id = callerAddress!()
+        let user = users.get(customer_id)
+        assert!(user.is_some(), ErrorCodes.UnauthorizedAccess)
+        assert!(user.unwrap().userType == "Customer", ErrorCodes.OnlyCustomersCanOrder)
+
+        let order_id = hash(customer_id, now!())
+        let order = Order {
+            id: order_id,
+            customer: customer_id,
+            itemDetails: itemDetails,
+            isDispatched: false,
+            trackingId: None
+        }
+        orders.insert(order_id, order)
+
+        emit OrderPlaced(order_id, customer_id, itemDetails)
+        return true
+    }
+
+    pub fn dispatchOrder(order_id: Hash, trackingId: String) -> bool {
+        let provider_id = callerAddress!()
+        let user = users.get(provider_id)
+        assert!(user.is_some(), ErrorCodes.UnauthorizedAccess)
+        assert!(user.unwrap().userType == "Provider", ErrorCodes.OnlyProvidersCanDispatch)
+
+        let mut order = orders.get(order_id)
+        assert!(order.is_some(), ErrorCodes.OrderNotFound)
+        let mut order_unwrapped = order.unwrap()
+        assert!(!order_unwrapped.isDispatched, ErrorCodes.OrderAlreadyDispatched)
+
+        order_unwrapped.isDispatched = true
+        order_unwrapped.trackingId = Some(trackingId)
+        orders.insert(order_id, order_unwrapped)
+
+        emit OrderDispatched(order_id, trackingId)
+        return true
+    }
+
+    pub fn getOrder(order_id: Hash) -> Order {
+        let order = orders.get(order_id)
+        assert!(order.is_some(), ErrorCodes.OrderNotFound)
+        return order.unwrap()
+    }
+}

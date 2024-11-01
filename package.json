@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@alephium/cli": "^1.8.4",
+    "punycode": "^2.3.1"
+  }
+}

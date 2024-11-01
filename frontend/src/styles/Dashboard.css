@@ -1,0 +1,122 @@
+/* Dashboard.css */
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px;
+  gap: 20px;
+}
+
+.box {
+  background: #2c3e50;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  padding: 10px;
+  text-align: center;
+  width: calc(25% - 40px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+}
+
+.logo img {
+  margin-bottom: 10px;
+}
+
+#dashhead {
+  color: #ecf0f1;
+  font-size: 2.5rem;
+  margin: 10px 0;
+}
+
+.content p {
+  color: #bdc3c7;
+  font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  .box {
+    width: calc(50% - 40px);
+  }
+}
+
+@media (max-width: 480px) {
+  .box {
+    width: 100%;
+  }
+}
+
+/* Modern glow and animations */
+.box {
+  position: relative;
+  background: linear-gradient(71deg, #080509, #1a171c, #080509);
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.box:before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent 60%);
+  animation: rotate-glow 5s linear infinite;
+}
+
+@keyframes rotate-glow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* truck overview */
+/* Dashboard.css */
+
+.container {
+  padding: 20px;
+  
+}
+
+h2 {
+  text-align: center;
+  padding: 0 !important;
+  margin-bottom: 40px;
+  font-size: 40px;
+  color: #fff;
+  font-weight: 600;
+  line-height: 60px;
+}
+
+.overview-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  background: linear-gradient(71deg, #080509, #1a171c, #080509);
+}
+
+.overview-table th, .overview-table td {
+  
+  padding: 15px;
+  text-align: center;
+  border: 1px solid #ddd;
+  color: #fff; 
+  
+}
+
+.overview-table th {
+  background: linear-gradient(71deg, #080509, #1a171c, #080509);
+  font-weight: bold;
+}
+
